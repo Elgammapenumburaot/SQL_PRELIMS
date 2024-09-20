@@ -91,4 +91,47 @@ VALUES
 (50456, 10456, 'Routine Checkup', 'No Treatment Required', '2023-09-12'),
 (50567, 10567, 'Migraine', 'Painkillers Prescribed: Paracetamol', '2023-09-15');
 
+DATA SET:
+
+Table Patients {
+    PatientID int [pk, increment] 
+    FirstName varchar(50)
+    LastName varchar(50)
+    DateOfBirth date
+    Gender varchar(10)
+    ContactInfo varchar(100)
+}
+
+Table Doctors {
+    DoctorID int [pk, increment] 
+    FirstName varchar(50)
+    LastName varchar(50)
+    Specialization varchar(50)
+    ContactInfo varchar(100)
+}
+
+Table Appointments {
+    AppointmentID int [pk, increment]
+    PatientID int [ref: > Patients.PatientID] 
+    DoctorID int [ref: > Doctors.DoctorID] 
+    AppointmentDate date
+    Purpose varchar(255)
+}
+
+Table Prescriptions {
+    PrescriptionID int [pk, increment]
+    PatientID int
+    DoctorID int [ref: > Doctors.DoctorID]
+    Medication varchar(100)
+    Dosage varchar(50)
+    DatePrescribed date
+}
+
+Table MedicalRecords {
+    RecordID int [pk, increment] 
+    PatientID int [ref: > Patients.PatientID] 
+    Diagnosis varchar(255)
+    Treatment varchar(255)
+    RecordDate date
+}
 
