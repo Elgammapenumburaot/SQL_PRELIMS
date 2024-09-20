@@ -1,0 +1,46 @@
+CREATE TABLE Patients (
+    PatientID INT PRIMARY KEY,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    DateOfBirth DATE NOT NULL,
+    Gender VARCHAR(10),
+    ContactInfo VARCHAR(100)
+);
+
+CREATE TABLE Doctors (
+    DoctorID INT PRIMARY KEY,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    Specialization VARCHAR(50),
+    ContactInfo VARCHAR(100)
+);
+
+CREATE TABLE Appointments (
+    AppointmentID INT PRIMARY KEY,
+    PatientID INT NOT NULL,
+    DoctorID INT NOT NULL,
+    AppointmentDate DATE NOT NULL,
+    Purpose VARCHAR(255),
+    FOREIGN KEY (PatientID) REFERENCES Patients(PatientID),
+    FOREIGN KEY (DoctorID) REFERENCES Doctors(DoctorID)
+);
+
+CREATE TABLE Prescriptions (
+    PrescriptionID INT PRIMARY KEY,
+    PatientID INT NOT NULL,
+    DoctorID INT NOT NULL,
+    Medication VARCHAR(100),
+    Dosage VARCHAR(50),
+    DatePrescribed DATE NOT NULL,
+    FOREIGN KEY (PatientID) REFERENCES Patients(PatientID),
+    FOREIGN KEY (DoctorID) REFERENCES Doctors(DoctorID)
+);
+
+CREATE TABLE MedicalRecords (
+    RecordID INT PRIMARY KEY,
+    PatientID INT NOT NULL,
+    Diagnosis VARCHAR(255),
+    Treatment VARCHAR(255),
+    RecordDate DATE NOT NULL,
+    FOREIGN KEY (PatientID) REFERENCES Patients(PatientID)
+);
