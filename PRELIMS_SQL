@@ -44,3 +44,51 @@ CREATE TABLE MedicalRecords (
     RecordDate DATE NOT NULL,
     FOREIGN KEY (PatientID) REFERENCES Patients(PatientID)
 );
+
+
+QUERIES:
+
+INSERT INTO Patients (PatientID, FirstName, LastName, DateOfBirth, Gender, ContactInfo)
+VALUES 
+(10123, 'John', 'Doe', '1985-06-15', 'Male', '+63-912-345-6789'),
+(10234, 'Jane', 'Smith', '1990-09-25', 'Female', '+63-912-345-6790'),
+(10345, 'Emily', 'Johnson', '1978-03-12', 'Female', '+63-912-345-6791'),
+(10456, 'Michael', 'Brown', '2002-11-20', 'Male', '+63-912-345-6792'),
+(10567, 'David', 'Williams', '1965-07-05', 'Male', '+63-912-345-6793');
+
+
+INSERT INTO Doctors (DoctorID, FirstName, LastName, Specialization, ContactInfo)
+VALUES
+(20123, 'Alice', 'Cooper', 'Cardiology', '+63-923-456-7890'),
+(20234, 'Robert', 'Wilson', 'Dermatology', '+63-923-456-7891'),
+(20345, 'Nancy', 'Taylor', 'Pediatrics', '+63-923-456-7892'),
+(20456, 'James', 'Anderson', 'Neurology', '+63-923-456-7893'),
+(20567, 'Laura', 'Clark', 'General Medicine', '+63-923-456-7894');
+
+
+INSERT INTO Appointments (AppointmentID, PatientID, DoctorID, AppointmentDate, Purpose)
+VALUES
+(30123, 10123, 20123, '2023-09-01', 'Heart Checkup'),
+(30234, 10234, 20234, '2023-09-05', 'Skin Rash Consultation'),
+(30345, 10345, 20345, '2023-09-10', 'Routine Child Checkup'),
+(30456, 10456, 20567, '2023-09-12', 'General Health Checkup'),
+(30567, 10567, 20456, '2023-09-15', 'Neurological Examination');
+
+
+INSERT INTO Prescriptions (PrescriptionID, PatientID, DoctorID, Medication, Dosage, DatePrescribed)
+VALUES
+(40123, 10123, 20123, 'Aspirin', '100mg', '2023-09-01'),
+(40234, 10234, 20234, 'Hydrocortisone', '20mg', '2023-09-05'),
+(40345, 10345, 20345, 'Amoxicillin', '500mg', '2023-09-10'),
+(40456, 10456, 20567, 'Ibuprofen', '200mg', '2023-09-12'),
+(40567, 10567, 20456, 'Paracetamol', '500mg', '2023-09-15');
+
+INSERT INTO MedicalRecords (RecordID, PatientID, Diagnosis, Treatment, RecordDate)
+VALUES
+(50123, 10123, 'Hypertension', 'Medication Prescribed: Aspirin', '2023-09-01'),
+(50234, 10234, 'Eczema', 'Topical Hydrocortisone', '2023-09-05'),
+(50345, 10345, 'Throat Infection', 'Antibiotics Prescribed: Amoxicillin', '2023-09-10'),
+(50456, 10456, 'Routine Checkup', 'No Treatment Required', '2023-09-12'),
+(50567, 10567, 'Migraine', 'Painkillers Prescribed: Paracetamol', '2023-09-15');
+
+
